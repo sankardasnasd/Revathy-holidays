@@ -5,7 +5,6 @@ pip install -r requirements.txt
 python manage.py collectstatic --no-input
 python manage.py migrate
 
-# Render-time environment variables for superuser creation
 python manage.py shell << END
 import os
 from django.contrib.auth import get_user_model
@@ -22,7 +21,3 @@ if username and password:
     else:
         print(f"Superuser '{username}' already exists.")
 END
-
-if [ -f "buses_init.json" ]; then
-    python manage.py loaddata buses_init.json
-fi
