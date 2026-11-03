@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+// Render-ൽ ലൈവ് ആയി നിൽക്കുന്ന ബാക്കെൻഡ് URL
+const BASE_URL = 'https://revathy-holidays-backend.onrender.com/api/';
+
 const API = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api/',
+  baseURL: BASE_URL,
 });
 
 // Request Interceptor: Attach token if exists
@@ -29,8 +32,8 @@ API.interceptors.response.use(
 
       if (refreshToken) {
         try {
-          // Request new access token using refresh token
-          const res = await axios.post('http://127.0.0.1:8000/api/token/refresh/', {
+          // Request new access token using refresh token from Live Backend
+          const res = await axios.post(`${BASE_URL}token/refresh/`, {
             refresh: refreshToken,
           });
 
